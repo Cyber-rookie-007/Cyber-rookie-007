@@ -1,0 +1,6 @@
+IP=127.0.0.1 | Reason=SQL Injection | Input=' OR '1'='1 | Time=Sat Aug  8 06:22:44 2026
+IP=127.0.0.1 | Reason=Cross-Site Scripting (XSS) | Input=<script>alert('XSS')</script> | Time=Sat Aug  8 06:24:27 2026
+IP=127.0.0.1 | Reason=Command Injection | Input=; whoami | Time=Sat Aug  8 06:24:57 2026
+IP=127.0.0.1 | Reason=SQL Injection | Input=' OR '1'='1 | Time=Sat Aug  8 06:26:50 2026
+IP=127.0.0.1 | Reason=Cross-Site Scripting (XSS) | Input=<script>alert('XSS')</script> | Time=Sat Aug  8 06:27:25 2026
+IP=127.0.0.1 | Reason=Command Injection | Input=; whoami | Time=Sat Aug  8 06:28:00 2026
