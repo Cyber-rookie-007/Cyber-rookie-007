@@ -42,7 +42,7 @@ The application processes user input through multiple security checks:
 ## 📂 Project Structure
 
 ```text
-ML-based-Web-Application-Firewall/
+Cyber-rookie-007/
 │
 ├── app.py
 ├── train_model.py
@@ -50,10 +50,11 @@ ML-based-Web-Application-Firewall/
 ├── vectorizer.pkl
 ├── waf_logs.txt
 ├── screenshots/
-│   ├── waf-home.png
-│   ├── safe-input.png
-│   ├── attack-blocked.png
-│   └── rate-limiting.png
+│   ├── safe-request.png
+│   ├── sql-injection-blocked.png
+│   ├── xss-blocked.png
+│   ├── command-injection-blocked.png
+│   └── waf-logs.png
 │
 └── README.md
 ```
@@ -63,29 +64,48 @@ ML-based-Web-Application-Firewall/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/Cyber-rookie-007/ML-based-Web-Application-Firewall.git
-cd ML-based-Web-Application-Firewall
+git clone https://github.com/Cyber-rookie-007/Cyber-rookie-007.git
+cd Cyber-rookie-007
 ```
 
-### 2. Install the required dependencies
+### 2. Create a virtual environment
+
+```bash
+python3 -m venv venv
+```
+
+Activate the virtual environment:
+
+```bash
+source venv/bin/activate
+```
+
+### 3. Install the required dependencies
 
 ```bash
 pip install flask scikit-learn joblib
 ```
 
-### 3. Train the machine-learning model
+### 4. Train the machine-learning model
 
 ```bash
 python train_model.py
 ```
 
-### 4. Start the Flask application
+After successful training, the model files are generated:
+
+```text
+waf_model.pkl
+vectorizer.pkl
+```
+
+### 5. Start the Flask application
 
 ```bash
 python app.py
 ```
 
-### 5. Open the application
+### 6. Open the application
 
 Open the following address in your browser:
 
@@ -93,41 +113,128 @@ Open the following address in your browser:
 http://127.0.0.1:5000
 ```
 
-## 🧪 Security Testing
+### 7. Test the WAF
 
-The project can be tested in a local environment using representative malicious and benign inputs.
+Submit normal and representative malicious inputs through the web interface.
 
-Examples include:
+Example SQL Injection input:
 
-* SQL Injection patterns
-* XSS payloads
-* Command Injection patterns
-* Normal/safe input
+```text
+' OR '1'='1
+```
 
-The results of the tests will be documented with screenshots after the application is successfully configured and run.
+Example XSS input:
 
-## 📊 Logging
+```text
+<script>alert('XSS')</script>
+```
 
-Malicious requests detected by the WAF are recorded in the application log.
+Example Command Injection input:
+
+```text
+; whoami
+```
+
+Detected malicious requests are blocked and recorded in:
 
 ```text
 waf_logs.txt
 ```
 
+### 8. Stop the application
+
+To stop the Flask application:
+
+```text
+Ctrl + C
+```
+
+To deactivate the virtual environment:
+
+```bash
+deactivate
+```
+
+## 🧪 Security Testing
+
+The WAF was tested in a local environment using both benign and representative malicious inputs.
+
+### Safe Input
+
+```text
+Welcome to my website
+```
+
+### SQL Injection
+
+```text
+' OR '1'='1
+```
+
+### Cross-Site Scripting (XSS)
+
+```text
+<script>alert('XSS')</script>
+```
+
+### Command Injection
+
+```text
+; whoami
+```
+
+The WAF analyzes the submitted input and blocks requests identified as malicious.
+
+## 📊 Logging
+
+Malicious requests detected by the WAF are recorded in:
+
+```text
+waf_logs.txt
+```
+
+Example log entry:
+
+```text
+IP=127.0.0.1 | Reason=SQL Injection | Input=' OR '1'='1 | Time=...
+```
+
 The log can be used to review detected activity and understand how the WAF responds to suspicious requests.
+
+## 📸 Screenshots
+
+### Safe Request
+
+![Safe Request](screenshots/safe-request.png)
+
+### SQL Injection Detection
+
+![SQL Injection Blocked](screenshots/sql-injection-blocked.png)
+
+### Cross-Site Scripting (XSS) Detection
+
+![XSS Blocked](screenshots/xss-blocked.png)
+
+### Command Injection Detection
+
+![Command Injection Blocked](screenshots/command-injection-blocked.png)
+
+### WAF Logging
+
+![WAF Logs](screenshots/waf-logs.png)
 
 ## 🎯 Learning Objectives
 
 This project is intended to provide practical exposure to:
 
-* Web application security
-* WAF concepts
-* Rule-based attack detection
-* Machine-learning-based classification
-* Flask web applications
-* Request filtering
-* Rate limiting
-* Security logging
+- Web application security
+- WAF concepts
+- Rule-based attack detection
+- Machine-learning-based classification
+- Flask web applications
+- Request filtering
+- Rate limiting
+- Security logging
 
 ## ⚠️ Disclaimer
 
@@ -137,14 +244,16 @@ This project is intended for educational and cybersecurity learning purposes. Se
 
 Possible improvements include:
 
-* Real-time security monitoring dashboard
-* SIEM integration
-* Docker deployment
-* Reverse-proxy integration
-* Cloud deployment
-* Improved machine-learning dataset
-* Advanced anomaly detection
+- Real-time security monitoring dashboard
+- SIEM integration
+- Docker deployment
+- Reverse-proxy integration
+- Cloud deployment
+- Improved machine-learning dataset
+- Advanced anomaly detection
 
 ## 👤 Author
 
-Pavan Kumar Reddy Poli
+Pavan Kumar Poli
+
+GitHub: https://github.com/Cyber-rookie-007
